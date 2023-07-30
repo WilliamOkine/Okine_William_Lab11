@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ListMaker {
-    private static ArrayList<String> list = new ArrayList<>(); // Declare and initialize the ArrayList to store the items.
+    private static ArrayList<String> list = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -13,22 +13,22 @@ public class ListMaker {
         while (!quit) {
             displayMenu(); // Display the menu options to the user.
             String choice = SafeInput.getRegExString( scan, menu, "[AaDdPpQq]");
-            // Get the user's choice using the SafeInput.getRegExString method, which ensures a valid menu option.
+
 
             System.out.println();
 
             switch (choice.toLowerCase()) {
                 case "a":
-                    addItemToList(scan); // Call the method to add an item to the list.
+                    addItemToList(scan);
                     break;
                 case "d":
-                    deleteItemFromList(scan); // Call the method to delete an item from the list.
+                    deleteItemFromList(scan);
                     break;
                 case "p":
-                    printList(); // Call the method to print the current list.
+                    printList();
                     break;
                 case "q":
-                    quit = confirmQuit(scan); // Call the method to confirm quitting the program.
+                    quit = confirmQuit(scan);
                     break;
             }
         }
@@ -48,7 +48,7 @@ public class ListMaker {
     private static void addItemToList(Scanner scan) {
         System.out.print("Enter the item to add: ");
         String newItem = scan.nextLine();
-        list.add(newItem); // Add the user's input to the ArrayList.
+        list.add(newItem);
         System.out.println("Item added to the list!");
     }
 
@@ -59,12 +59,12 @@ public class ListMaker {
         }
 
         System.out.println("Current list:");
-        printNumberedList(); // Display the current list with item numbers.
+        printNumberedList();
 
         int itemNumber = SafeInput.getRangedInt(scan, "Enter the item number to delete: ", 1, list.size());
-        // Get the item number to delete using SafeInput.getRangedInt, which ensures a valid number within the list size.
 
-        list.remove(itemNumber - 1); // Remove the item from the ArrayList.
+
+        list.remove(itemNumber - 1);
         System.out.println("Item deleted from the list!");
     }
 
@@ -74,20 +74,20 @@ public class ListMaker {
         } else {
             System.out.println("Current list:");
             for (String item : list) {
-                System.out.println("- " + item); // Display the items in the list.
+                System.out.println("- " + item);
             }
         }
     }
 
     private static void printNumberedList() {
         for (int i = 0; i < list.size(); i++) {
-            System.out.println((i + 1) + ". " + list.get(i)); // Display the items in the list with item numbers.
+            System.out.println((i + 1) + ". " + list.get(i));
         }
     }
 
     private static boolean confirmQuit(Scanner scan) {
         return SafeInput.getYNConfirm(scan, "Are you sure you want to quit? (Y/N): ");
-        // Get the user's confirmation to quit using SafeInput.getYNConfirm.
+
     }
 }
 
